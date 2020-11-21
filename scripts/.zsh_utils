@@ -5,7 +5,7 @@ alias ddrestart="systemctl reload docker"
 alias ddedaemon="vi /etc/docker/daemon.json"
 alias utils="cat ~/.zsh_utils"
 alias ebash="vi ~/.zsh_utils"
-alias rbash="source ~/.zshrc"
+alias rbash="source /.zshrc"
 
 
 # ACCESS TO DOCKER
