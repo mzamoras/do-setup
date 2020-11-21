@@ -18,8 +18,8 @@ services:
       DB_MYSQL_PASSWORD: "${PWR}"
       DB_MYSQL_NAME: "${PWR}"
     volumes:
-      - ./data2:/data
-      - ./letsencrypt2:/etc/letsencrypt
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
     depends_on:
       - db
   db:
@@ -31,7 +31,7 @@ services:
       MYSQL_USER: '${PWR}'
       MYSQL_PASSWORD: '${PWR}'
     volumes:
-      - ./data2/mysql:/var/lib/mysql
+      - ./data/mysql:/var/lib/mysql
 networks:
   default:
     driver: bridge
