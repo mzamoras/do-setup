@@ -1,0 +1,45 @@
+version: "2.8"
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'    
+    restart: always
+    ports:
+      # Public HTTP Port:
+      - '80:80'
+      # Public HTTPS Port:
+      - '443:443'
+      # Admin Web Port:
+      - '81:81'
+    environment:
+      # These are the settings to access your db
+      DB_MYSQL_HOST: "db"
+      DB_MYSQL_PORT: 3306
+      DB_MYSQL_USER: "${PWR}"
+      DB_MYSQL_PASSWORD: "${PWR}"
+      DB_MYSQL_NAME: "${PWR}"
+    volumes:
+      - ./data2:/data
+      - ./letsencrypt2:/etc/letsencrypt
+    depends_on:
+      - db
+  db:
+    image: jc21/mariadb-aria:10.4
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: '${PWR}'
+      MYSQL_DATABASE: '${PWR}'
+      MYSQL_USER: '${PWR}'
+      MYSQL_PASSWORD: '${PWR}'
+    volumes:
+      - ./data2/mysql:/var/lib/mysql
+networks:
+  default:
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.${IP_SUB}.0.0/16
+          gateway: 172.${IP_SUB}.0.1
+        - subnet: fd00:96cd:${IP_SUB}::/96
+          gateway: fd00:96cd:${IP_SUB}::1
