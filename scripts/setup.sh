@@ -1,6 +1,8 @@
 #!/bin/sh
 apt-get update && apt-get -y install zsh
-$ sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"--keep-zshrc
+wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -0 ./installer.sh
+chmod -x installer.sh
+sh installer.sh --keep-zshrc
 wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/.zsh_utils -O ~/.zsh_utils
 echo "source .zsh_utils" >> ~/.zshrc
 mkdir containers
