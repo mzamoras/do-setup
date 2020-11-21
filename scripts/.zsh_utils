@@ -1,0 +1,34 @@
+alias ddstop="systemctl stop docker"
+alias ddstart="systemctl start docker"
+alias ddreload="systemctl reload docker"
+alias ddrestart="systemctl reload docker"
+alias ddedaemon="vi /etc/docker/daemon.json"
+alias utils="cat ~/.zsh_utils"
+alias ebash="vi ~/.zsh_utils"
+alias rbash="source ~/.zshrc"
+
+
+# ACCESS TO DOCKER
+function ddaccess {
+    if [[ -z $1 ]]
+    then
+        echo "\nPlease provide the container name to access\n\n"
+        docker ps
+    else
+        docker exec -it $1 /bin/bash
+    fi
+}
+
+# DOCKER COMPOSE
+function ddcomp {
+    if [[ -z $2 ]]
+    then
+        docker-compose -f $1.yaml --name
+    else
+        docker-compose -f $1.yaml --name $2 -itd
+    fi
+}
+
+function ddip {
+    echo "{\n    \"iptables\": false,\n    \"dns\": [\"$1\", \"8.8.8.8\"],\n    \"ipv6\": true,\n    \"fixed-cidr-v6\": \"fd00:96cd:1::/96\"\n}" >> /etc/docker/daemon.json
+}
