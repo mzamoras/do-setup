@@ -32,6 +32,15 @@ services:
       MYSQL_PASSWORD: '${PWR}'
     volumes:
       - ./data/mysql:/var/lib/mysql
+  jenkins:
+    image: 'jenkins/jenkins'
+    ports:
+      - '82:8080'
+      - '5000:5000'
+    volumes:
+      - jenkins-data:/var/jenkins_home
+volumes:
+  jenkins-data:
 networks:
   default:
     driver: bridge
@@ -39,7 +48,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.${IP_SUB_NGINX}.0.0/16
-          gateway: 172.${IP_SUB_NGINX}.0.1
-        - subnet: fd00:96cd:${IP_SUB_NGINX}::/96
-          gateway: fd00:96cd:${IP_SUB_NGINX}::1
+        - subnet: 172.${IP_SUB_MERGED}.0.0/16
+          gateway: 172.${IP_SUB_MERGED}.0.1
+        - subnet: fd00:96cd:${IP_SUB_MERGED}::/96
+          gateway: fd00:96cd:${IP_SUB_MERGED}::1

@@ -1,3 +1,4 @@
+#!/bin/sh
 alias ddstop="systemctl stop docker"
 alias ddstart="systemctl start docker"
 alias ddreload="systemctl reload docker"
@@ -5,8 +6,13 @@ alias ddrestart="systemctl reload docker"
 alias ddedaemon="vi /etc/docker/daemon.json"
 alias utils="cat ~/.zsh_utils"
 alias ebash="vi ~/.zsh_utils"
-alias rbash="source /.zshrc"
+alias rbash="cd ~ && source .zshrc"
 
+
+# JENKINS KEY
+function jkey {
+    docker exec -it $1 cat /var/jenkins_home/secret:qs/initialAdminPassword
+}
 
 # ACCESS TO DOCKER
 function ddaccess {
@@ -20,15 +26,13 @@ function ddaccess {
 }
 
 # DOCKER COMPOSE
-function ddcomp {
+function ddc {
     if [[ -z $2 ]]
     then
-        docker-compose -f $1.yaml --name
+        echo "\nPlease provide the container name and action (up, down)"
+        echo "\nUse: ddc name up\n\n"
     else
-        docker-compose -f $1.yaml --name $2 -itd
+        cd ~/containers/$1
+        docker-compose -f $1.yaml --name -d $2
     fi
-}
-
-function ddip {
-    echo "{\n    \"iptables\": false,\n    \"dns\": [\"$1\", \"8.8.8.8\"],\n    \"ipv6\": true,\n    \"fixed-cidr-v6\": \"fd00:96cd:1::/96\"\n}" >> /etc/docker/daemon.json
 }

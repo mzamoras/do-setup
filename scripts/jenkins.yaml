@@ -1,11 +1,23 @@
-version: '3'
+version: '2.4'
 services:
   jenkins:
     image: 'jenkins/jenkins'
     ports:
-      - '8080:8080'
+      - '82:8080'
       - '5000:5000'
     volumes:
       - jenkins-data:/var/jenkins_home
 volumes:
   jenkins-data:
+networks:
+  default:
+    name: jenkins-service
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.${IP_SUB_JENKINS}.0.0/16
+          gateway: 172.${IP_SUB_JENKINS}.0.1
+        - subnet: fd00:96cd:${IP_SUB_JENKINS}::/96
+          gateway: fd00:96cd:${IP_SUB_JENKINS}::1
