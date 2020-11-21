@@ -1,6 +1,6 @@
 #!/bin/sh
 apt-get update && apt-get -y install zsh
-wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -0 ./installer.sh
+wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O ./installer.sh
 chmod -x installer.sh
 sh installer.sh --keep-zshrc
 wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/.zsh_utils -O ~/.zsh_utils
