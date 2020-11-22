@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 REPO="$( cd "$( dirname "$0" )" && pwd )"
 #UPDATE
 apt-get update && apt-get -y install zsh
