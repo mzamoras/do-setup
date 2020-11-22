@@ -10,8 +10,8 @@ fi
 
 #COPY THE ALIASES
 if read -q '?Add variables to the shell (y/n) ?'; then
-    echo "NGINX_DIR=$REPO/containers/nginx" >> ~/.zshrc
-    echo "JENKINS_DIR=$REPO/containers/jenkins" >> ~/.zshrc
+    echo "NGINX_DIR=$_REPO/containers/nginx" >> ~/.zshrc
+    echo "JENKINS_DIR=$_REPO/containers/jenkins" >> ~/.zshrc
     echo "REPO=$_REPO" >> ~/.zshrc
     echo "source $_REPO/scripts/.zsh_utils" >> ~/.zshrc
 else
