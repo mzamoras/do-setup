@@ -9,11 +9,14 @@ chmod -x installer.sh
 
 #COPY THE ALIASES
 sh installer.sh
-read -p "Press enter to continue"
-echo "NGINX_DIR=$REPO/containers/nginx" >> ~/.zshrc
-echo "JENKINS_DIR=$REPO/containers/jenkins" >> ~/.zshrc
-echo "REPO=$REPO" >> ~/.zshrc
-echo "source $REPO/scripts/.zsh_utils" >> ~/.zshrc
+
+if read -q '?Add variables to the shell (y/n) ?'; then
+    echo "NGINX_DIR=$REPO/containers/nginx" >> ~/.zshrc
+    echo "JENKINS_DIR=$REPO/containers/jenkins" >> ~/.zshrc
+    echo "REPO=$REPO" >> ~/.zshrc
+    echo "source $REPO/scripts/.zsh_utils" >> ~/.zshrc
+fi
+
 source $HOME/.zshrc
 
 #SETUP FOR DOCKER DAEMON
