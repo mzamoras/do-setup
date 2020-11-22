@@ -13,9 +13,9 @@ read -p "Press enter to continue"
 echo "NGINX_DIR=$REPO/containers/nginx" >> ~/.zshrc
 echo "JENKINS_DIR=$REPO/containers/jenkins" >> ~/.zshrc
 echo "REPO=$REPO" >> ~/.zshrc
-echo "source $REPO/.zsh_utils" >> ~/.zshrc
+echo "source $REPO/scripts/.zsh_utils" >> ~/.zshrc
 source $HOME/.zshrc
 
 #SETUP FOR DOCKER DAEMON
 read -p "Press enter to continue"
-sh ./daemon.sh
+sh $REPO/daemon.sh
