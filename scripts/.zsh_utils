@@ -1,5 +1,4 @@
 #!/bin/sh
-REPO="$( cd "$( dirname "$0" )" && pwd )"
 alias ddstop="systemctl stop docker"
 alias ddstart="systemctl start docker"
 alias ddreload="systemctl daemon-reload && systemctl reload docker"
