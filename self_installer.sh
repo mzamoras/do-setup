@@ -1,4 +1,5 @@
 #GET OH-MY-ZSH
+REPO="$( cd "$( dirname "$0" )" && pwd )"
 if read -q '?Install Oh-my-zsh ?'; then
 wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O ./installer.sh
 chmod -x installer.sh
