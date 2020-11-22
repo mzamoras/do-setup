@@ -1,17 +1,19 @@
 #!/bin/sh
 alias ddstop="systemctl stop docker"
 alias ddstart="systemctl start docker"
-alias ddreload="systemctl reload docker"
-alias ddrestart="systemctl reload docker"
+alias ddreload="systemctl daemon-reload && systemctl reload docker"
+alias ddrestart="systemctl daemon-reload && systemctl reload docker"
 alias ddedaemon="vi /etc/docker/daemon.json"
-alias utils="cat ~/.zsh_utils"
-alias ebash="vi ~/.zsh_utils"
-alias rbash="cd ~ && source .zshrc"
+alias utils="cat $REPO/.zsh_utils"
+alias ebash="vi $REPO/.zsh_utils"
+alias rbash="source $HOME/.zshrc"
 
+alias cdj="cd $JENKINS_DIR"
+alias cdn="cd $NGINX_DIR"
 
 # JENKINS KEY
 function jkey {
-    docker exec -it $1 cat /var/jenkins_home/secret:qs/initialAdminPassword
+    docker exec -it $1 cat $NGINX_DIR/jenkins/var/jenkins_home/secret:qs/initialAdminPassword
 }
 
 # ACCESS TO DOCKER
@@ -19,7 +21,8 @@ function ddaccess {
     if [[ -z $1 ]]
     then
         echo "\nPlease provide the container name to access\n\n"
-        docker ps
+        docker psls
+
     else
         docker exec -it $1 /bin/bash
     fi
@@ -32,7 +35,7 @@ function ddc {
         echo "\nPlease provide the container name and action (up, down)"
         echo "\nUse: ddc name up\n\n"
     else
-        cd ~/containers/$1
-        docker-compose -f $1.yaml --name -d $2
+        cd $REPO/containers/$1
+        docker-compose -f $1.yaml --name $2 -d
     fi
 }

@@ -1,4 +1,5 @@
 use:
 ```
-$ sh -c "$(wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/setup.sh -O -)"
+git clone https://github.com/mzamoras/do-setup.git
+sh setup.sh
 ```

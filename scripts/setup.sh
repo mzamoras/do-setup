@@ -1,19 +1,18 @@
 #!/bin/sh
+#UPDATE
 apt-get update && apt-get -y install zsh
+
+#GET OH-MY-ZSH
 wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O ./installer.sh
 chmod -x installer.sh
-sh installer.sh --keep-zshrc
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/.zsh_utils -O ~/.zsh_utils
-echo "source .zsh_utils" >> ~/.zshrc
-mkdir containers
-cd containers
-mkdir nginx
-mkdir jenkins
-mkdir merged
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/nginx.yaml -O ./nginx/nginx.yaml
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/example.env -O ./nginx/.env
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/jenkins.yaml -O ./jenkins/jenkins.yaml
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/example.env -O ./jenkins/.env
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/merged.yaml -O ./merged/merged.yaml
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/example.env -O ./merged/.env
-wget https://raw.githubusercontent.com/mzamoras/do-setup/main/scripts/daemon.json -O /etc/docker/daemon.json
+
+#SETUP FOR DOCKER DAEMON
+sh ./daemon.sh
+
+#COPY THE ALIASES
+sh installer.sh
+REPO="$( cd "$( dirname "$0" )" && pwd )"
+echo "NGINX_DIR=$REPO/containers/nginx" >> ~/.zshrc
+echo "JENKINS_DIR=$REPO/containers/jenkins" >> ~/.zshrc
+echo "REPO=$REPO" >> ~/.zshrc
+echo "source $REPO/.zsh_utils" >> ~/.zshrc
