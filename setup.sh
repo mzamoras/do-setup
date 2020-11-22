@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 REPO="$( cd "$( dirname "$0" )" && pwd )"
 #UPDATE
 apt-get update && apt-get -y install zsh
@@ -15,10 +15,12 @@ if read -q '?Add variables to the shell (y/n) ?'; then
     echo "JENKINS_DIR=$REPO/containers/jenkins" >> ~/.zshrc
     echo "REPO=$REPO" >> ~/.zshrc
     echo "source $REPO/scripts/.zsh_utils" >> ~/.zshrc
+else
+    echo "Skipping adding variables to oh-my-zsh"
 fi
 
 source $HOME/.zshrc
 
 #SETUP FOR DOCKER DAEMON
 read -p "Press enter to continue"
-sh $REPO/scripts/daemon.sh
+source $REPO/scripts/daemon.sh
