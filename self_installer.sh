@@ -1,5 +1,5 @@
 #GET OH-MY-ZSH
-REPO="$( cd "$( dirname "$0" )" && pwd )"
+_REPO="$( cd "$( dirname "$0" )" && pwd )"
 if read -q '?Install Oh-my-zsh ?'; then
 wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O ./installer.sh
 chmod -x installer.sh
@@ -12,8 +12,8 @@ fi
 if read -q '?Add variables to the shell (y/n) ?'; then
     echo "NGINX_DIR=$REPO/containers/nginx" >> ~/.zshrc
     echo "JENKINS_DIR=$REPO/containers/jenkins" >> ~/.zshrc
-    echo "REPO=$REPO" >> ~/.zshrc
-    echo "source $REPO/scripts/.zsh_utils" >> ~/.zshrc
+    echo "REPO=$_REPO" >> ~/.zshrc
+    echo "source $_REPO/scripts/.zsh_utils" >> ~/.zshrc
 else
     echo "Skipping adding variables to oh-my-zsh"
 fi
