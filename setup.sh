@@ -18,4 +18,4 @@ source $HOME/.zshrc
 
 #SETUP FOR DOCKER DAEMON
 read -p "Press enter to continue"
-sh $REPO/daemon.sh
+sh $REPO/scripts/daemon.sh
