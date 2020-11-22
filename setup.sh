@@ -22,5 +22,4 @@ fi
 source $HOME/.zshrc
 
 #SETUP FOR DOCKER DAEMON
-read -p "Press enter to continue"
 source $REPO/scripts/daemon.sh
