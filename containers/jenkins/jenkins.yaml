@@ -17,7 +17,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.55.${IP_SUB}.0/8
-          gateway: 172.55.${IP_SUB}.1
+        - subnet: 172.${IP_SUB}.0.0/8
+          gateway: 172.${IP_SUB}.0.1
         - subnet: fd00:96cd:${IP_SUB}::/96
           gateway: fd00:96cd:${IP_SUB}::1
